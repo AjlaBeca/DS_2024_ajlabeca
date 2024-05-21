@@ -10,20 +10,30 @@ public class BinarySearch {
         Entry temp = new Entry(searchableName, "", "", "", "", "");
         ArrayList<Integer> tempResult = new ArrayList<>();
 
-        while(low<=high){
+        while(low <= high){
             int mid = low + (high - low) / 2;
-            if(temp.compareTo(entries[mid]) < 0){
+            int comparison = temp.compareTo(entries[mid]);
+
+            if (comparison < 0) {
                 high = mid - 1;
-            }
-            else if (temp.compareTo(entries[mid]) > 0){
+            } else if (comparison > 0) {
                 low = mid + 1;
-            }
-            else{
-                int i = mid;
-                while(entries[i].getName().equals(searchableName)){
-                    i--;
+            } else {
+
+                int start = mid;
+                while (start >= 0 && entries[start].getName().equals(searchableName)) {
+                    start--;
                 }
-                while(entries[++i].getName().equals(searchableName)){
+                start++;
+
+
+                int end = mid;
+                while (end < entries.length && entries[end].getName().equals(searchableName)) {
+                    end++;
+                }
+                end--;
+
+                for (int i = start; i <= end; i++) {
                     tempResult.add(i);
                 }
                 break;
@@ -31,11 +41,8 @@ public class BinarySearch {
         }
 
         int[] result = new int[tempResult.size()];
-
-        if(!tempResult.isEmpty()){
-            for(int i = 0; i < result.length; i++){
-                result[i] = tempResult.get(i);
-            }
+        for (int i = 0; i < result.length; i++) {
+            result[i] = tempResult.get(i);
         }
 
         return result;

@@ -41,14 +41,14 @@ public class PhonebookV1 {
             if (searchResult.length == 0) {
                 System.out.println("No entries found.");
             } else {
-                int start = searchResult[0];
-                int end = searchResult[1];
-                System.out.printf("%d entries found:\n", (end - start + 1));
-                for (int i = start; i <= end; i++) {
-                    System.out.println(entries[i]);
+                System.out.printf("%d entries found:\n", searchResult.length);
+                for (int index : searchResult) {
+                    System.out.println(entries[index]);
                 }
             }
         }
+
+
         scanner.close();
     }
 }
