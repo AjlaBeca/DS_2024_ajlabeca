@@ -48,7 +48,6 @@ public class PhonebookV1 {
             }
         }
 
-
         scanner.close();
     }
 }
